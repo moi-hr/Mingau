@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="mingau-sit.gif">
+    <link href='https://fonts.googleapis.com/css?family=Pixelify Sans' rel='stylesheet'>
+    <title>Mingau</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Pixelify Sans', "Arial", "Helvetica", "sans-serif";
+            background-image: url(planet-background.jpg);
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center bottom;
+        }
+        .game-board {
+            width: 100%;
+            height: 80vh;
+            border-bottom: 1px solid rgba(85, 85, 85, 0);
+            background-image: url(space-background.gif);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        button {
+            background-image: linear-gradient(to left, blueViolet, deepSkyBlue);
+            color: white;
+            text-shadow: 2px 2px 2px black;
+            font-family: 'Pixelify Sans', "Arial", "Helvetica", "sans-serif";
+            font-weight: bold;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 15px;
+            padding: 1rem;
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            width: 30%;
+            right: 35%;
+            top: 50vh;
+            cursor: pointer;
+            z-index: 1;
+        }
+        button:hover {
+            border: 2px solid white;
+            background: none;
+            color: white;
+        }
+        .start h1 {
+            font-size: 4rem;
+            color: white;
+            text-shadow: 2px 2px 2px black;
+            text-align: center;
+            margin-top: 10rem;
+        }
+        .start h2 {
+            font-size: 1.5rem;
+            color: white;
+            text-shadow: 2px 2px 2px black;
+            text-align: center;
+        }
+        .instrucoes {
+            font-family: 'Pixelify Sans', "Arial", "Helvetica", "sans-serif";
+            font-weight: bold;
+            font-size: 1rem;
+            border: none;
+            border-radius: 15px;
+            padding: 10px;
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            width: 30%;
+            margin-top: 65px;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .creditos {
+            font-family: 'Pixelify Sans', "Arial", "Helvetica", "sans-serif";
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 15px;
+            padding: 10px;
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            width: 30%;
+            margin-top: 107px;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .game-over {
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.322);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .game-over button {
+            font-size: 1.3rem;
+            position: static;
+            margin-top: 5px;
+            width: 30%;
+            right: auto;
+            top: auto;
+        }
+        .game-over h1 {
+            font-size: 3rem;
+            color: red;
+            text-shadow: 2px 2px 2px black;
+            text-align: center;
+            margin-top: -100px;
+        }
+        .game-over h2 {
+            font-size: 2rem;
+            color: white;
+            text-shadow: 2px 2px 2px black;
+            margin-bottom: 20px;
+        }
+        .novelo {
+            position: absolute;
+            bottom: 0;
+            right: -80px;
+            width: 80px;
+        }
+        .novelo-animation {
+            animation: novelo-animation 1.3s infinite linear;
+        }
+        .mingau {
+            position: absolute;
+            bottom: 0;
+            width: 130px;
+        }
+        .jump {
+            animation: jump 800ms ease-out;
+        }
+        .novelos {
+            margin-top: 30px;
+            width: 600px;
+            position: absolute;
+            animation: novelos-animation 20s infinite linear;
+        }
+        #score-display {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 1.8rem;
+            text-shadow: 2px 2px 2px black;
+            z-index: 10;
+            display: none;
+        }
+        #lives-display {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 1.8rem;
+            text-shadow: 2px 2px 2px black;
+            z-index: 10;
+            display: none;
+        }
+        @keyframes novelo-animation {
+            from {right: -80%;}
+            to {right: 100%;}
+        }
+        @keyframes jump {
+            0% {bottom: 0;}
+            30% {bottom: 180px;}
+            40% {bottom: 180px;}
+            50% {bottom: 180px;}
+            60% {bottom: 180px;}
+            100% {bottom: 0;}
+        }
+        @keyframes novelos-animation {
+            from {right: -600px;}
+            to {right: 100%;}
+        }
+        @media (max-width: 600px) {
+            body {
+                background-image: url(planet-background-2.jpg); 
+                
+                background-size: cover;
+                background-position: center bottom; 
+            }
+        }
+        @media (min-width: 601px) and (max-width: 1024px) {
+            body {
+                background-image: url(planet-background-2.jpg); 
+                
+                background-size: cover;
+                background-position: center bottom; 
+            }
+            
+            .start h1 {
+                font-size: 3.5rem;
+                margin-top: 8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-board">
+        <div id="score-display">SCORE: 0</div>
+        <div id="lives-display">♡: 0</div> 
+        <img src="novelos.png" alt="novelos" class="novelos">
+        <img src="mingau.gif" alt="mingau" class="mingau">
+        <img src="novelo.gif" alt="novelo" class="novelo">
+        <div class="start">
+            <h1>Mingau</h1>
+            <h2>O gato espacial</h2>
+            <button class="start" onclick="startGame()">Iniciar</button>
+            <button class="instrucoes" id="btn-instrucoes">Instruções</button>
+            <button class="creditos" id="btn-creditos">Créditos</button>
+        </div>
+    </div>
+    <div class="game-over">
+        <h1>Game Over</h1>
+        <h2 id="final-score">Pontuação: 0</h2> 
+        <button onclick="restartGame()">Reiniciar</button>
+        <button onclick="goToMenu()">Menu</button> 
+    </div>
+
+    <script>
+        const mingau = document.querySelectorAll('.mingau')[0];
+        const novelo = document.querySelectorAll('.novelo')[0];
+        const start = document.querySelector('.start');
+        const gameOver = document.querySelector('.game-over');
+        const finalScoreDisplay = document.getElementById('final-score'); 
+
+        // VARIÁVEIS DE PONTUAÇÃO E LOOP
+        let score = 0;
+        let scoreInterval = null;
+        let gameLoopId = null; 
+        const scoreDisplay = document.getElementById('score-display');
+        
+        // [VIDAS] NOVAS VARIÁVEIS PARA LÓGICA DE VIDA E PETISCO
+        let lives = 0; 
+        const livesDisplay = document.getElementById('lives-display');
+        let nextPowerUpScore = 100; 
+        let isPowerUp = false; 
+        // Variável de invencibilidade
+        let isInvulnerable = false; 
+        
+        audioStart = new Audio('theme.mp3');
+        audioGameOver = new Audio('game-over.mp3');
+        const audioLifeExtra = new Audio('vida-extra.mp3');
+        const audioPerdeVida = new Audio('perde-vida.mp3');
+
+
+        // LÓGICA DO SCORE E POWER-UP
+        function updateScore() {
+            score++;
+            scoreDisplay.textContent = 'SCORE: ' + score;
+
+            if (score >= nextPowerUpScore && !isPowerUp) {
+                // Apenas agenda o power-up
+            }
+        }
+
+        function startScore() {
+            scoreInterval = setInterval(updateScore, 100);
+        }
+
+        function stopScore() {
+            clearInterval(scoreInterval);
+            scoreInterval = null;
+        }
+
+        function updateLivesDisplay() {
+            livesDisplay.textContent = '♡: ' + lives;
+        }
+
+        // FUNÇÃO DE PULO
+        const jump = () => {
+            if (gameOver.style.display === 'flex' || mingau.classList.contains('jump')) return; 
+
+            mingau.classList.add('jump');
+            setTimeout(() => {
+                mingau.classList.remove('jump');
+            }, 500);
+        }
+
+        // FUNÇÃO DO LOOP DE COLISÃO
+        const startLoop = () => {
+            if (gameLoopId) {
+                clearInterval(gameLoopId);
+            }
+
+            gameLoopId = setInterval(() => {
+                if (gameOver.style.display === 'flex') return;
+
+                const noveloPosition = novelo.offsetLeft;
+                const mingauPosition = +window.getComputedStyle(mingau).bottom.replace('px', '');
+
+                // Condição de colisão base: X (110 a 0) e Y (no chão ou pulo baixo)
+                // + Checagem de invulnerabilidade
+                if (noveloPosition <= 110 && noveloPosition > 0 && mingauPosition < 80 && !isInvulnerable) {
+                    
+                    // --- 1. COLISÃO COM POWER-UP (PETISCO) ---
+                    if (isPowerUp) {
+                        lives++;
+                        updateLivesDisplay();
+                        
+                        isPowerUp = false;
+                        nextPowerUpScore += 100;
+                        
+                        audioLifeExtra.play();
+                        
+                        novelo.classList.remove('novelo-animation');
+                        novelo.src = 'novelo.gif'; 
+                        novelo.style.left = '100%';
+                        
+                        setTimeout(() => {
+                            novelo.classList.add('novelo-animation');
+                            novelo.style.left = '';
+                            novelo.style.right = '0';
+                        }, 50);
+
+                        return;
+                    } 
+                    
+                    // --- 2. COLISÃO COM NOVELO (COM VIDAS) ---
+                    else if (lives > 0) {
+                        lives--;
+                        updateLivesDisplay();
+                        
+                        // ATIVAÇÃO DA INVENCIBILIDADE
+                        isInvulnerable = true; 
+                        
+                        // Animação de touca de crochê e interrupção do novelo
+                        novelo.classList.remove('novelo-animation');
+                        novelo.style.left = `${noveloPosition}px`;
+                        
+                        novelo.src = 'touca.png';
+                        audioPerdeVida.play();
+                        
+                        // Faz a touca sumir e o novelo original reaparecer
+                        setTimeout(() => {
+                            novelo.src = 'novelo.gif';
+                            novelo.style.left = ''; 
+                            novelo.style.right = '-80px'; 
+                            novelo.classList.add('novelo-animation');
+
+                            // DESATIVA A INVENCIBILIDADE APÓS A ANIMAÇÃO DA TOUCA
+                            isInvulnerable = false; 
+                        }, 500);
+                        
+                        return; // Sai do loop após perder uma vida
+                    }
+                    
+                    // --- 3. COLISÃO COM NOVELO (SEM VIDAS - GAME OVER) ---
+                    else { // Se não é Power-up E não tem vidas
+                        stopScore();
+                        clearInterval(gameLoopId);
+
+                        finalScoreDisplay.textContent = 'Pontuação Final: ' + score;
+                        
+                        novelo.classList.remove('novelo-animation');
+                        novelo.style.left = `${noveloPosition}px`;
+
+                        mingau.classList.remove('jump'); 
+                        mingau.style.bottom = `${mingauPosition}px`;
+
+                        mingau.src = "game-over.gif";
+                        mingau.style.width = '130px';
+                        mingau.style.marginLeft = '1px';
+
+                        audioStart.pause();
+                        audioGameOver.play();
+                        
+                        function stopAudio() {
+                            audioGameOver.pause()
+                        }
+                        setTimeout(stopAudio, 7000);
+
+                        novelo.style.display = 'none';
+                        gameOver.style.display = 'flex';
+                    }
+                }
+                
+                // Lógica de passagem de obstáculo
+                if (noveloPosition < -70) {
+                    if (score >= nextPowerUpScore && !isPowerUp) {
+                        isPowerUp = true;
+                        novelo.classList.remove('novelo-animation');
+                        novelo.src = 'petisco.png';
+                        
+                        novelo.style.left = ''; 
+                        novelo.style.right = '-80px';
+                        
+                        setTimeout(() => {
+                            novelo.classList.add('novelo-animation');
+                        }, 50);
+
+                    } else if (isPowerUp) {
+                        isPowerUp = false;
+                        nextPowerUpScore += 100;
+                        novelo.src = 'novelo.gif';
+                        
+                        novelo.classList.remove('novelo-animation');
+                        novelo.style.left = '';
+                        novelo.style.right = '-80px';
+                        setTimeout(() => {
+                            novelo.classList.add('novelo-animation');
+                        }, 50);
+                    }
+                }
+
+            }, 10);
+        }
+
+        // FUNÇÕES startGame, restartGame, jump, goToMenu e Event Listeners
+
+        const startGame = () => {
+            startLoop(); 
+            
+            score = 0;
+            scoreDisplay.textContent = 'SCORE: 0';
+            lives = 0;
+            updateLivesDisplay();
+            livesDisplay.style.display = 'block'; 
+            
+            isPowerUp = false;
+            nextPowerUpScore = 100;
+            // GARANTE QUE O JOGO INICIE SEM INVULNERABILIDADE
+            isInvulnerable = false; 
+
+            startScore();
+            scoreDisplay.style.display = 'block'; 
+
+            novelo.src = 'novelo.gif';
+            novelo.classList.add('novelo-animation');
+            start.style.display = 'none';
+            
+            audioStart.play();
+            audioStart.loop = true;
+        }
+
+        const restartGame = () => {
+            novelo.src = 'novelo.gif';
+            isPowerUp = false;
+            nextPowerUpScore = 100;
+            // GARANTE QUE O REINÍCIO SEJA LIMPO
+            isInvulnerable = false; 
+            
+            startLoop(); 
+
+            novelo.classList.add('novelo-animation'); 
+            novelo.style.display = 'block';
+            
+            score = 0;
+            scoreDisplay.textContent = 'SCORE: 0';
+            lives = 0;
+            updateLivesDisplay();
+
+            startScore(); 
+
+            gameOver.style.display = 'none';
+            novelo.style.left = '';
+            novelo.style.right = '0'; 
+            mingau.src = 'mingau.gif';
+            mingau.style.width = '130px'; 
+            mingau.style.bottom = '0';
+            mingau.style.marginLeft = '0'; 
+
+            start.style.display = 'none';
+
+            audioGameOver.pause();
+            audioGameOver.currentTime = 0;
+
+            audioStart.play();
+            audioStart.currentTime = 0;
+        }
+
+        const goToMenu = () => {
+            window.location.reload(); 
+        };
+
+        document.addEventListener('keypress', e => {
+            const tecla = e.key
+            if (tecla === ' ') {
+                jump()
+            }
+        })
+
+        document.addEventListener('touchstart', e => {
+            if (e.touches.length) {
+                jump() 
+            }
+        })
+
+        document.addEventListener('keypress', e => {
+            const tecla = e.key
+            if (tecla === 'Enter') {
+                startGame()
+            }
+        })
+
+        // Botão para página de créditos do jogo
+        const btnCreditos = document.getElementById('btn-creditos');
+
+        const irParaCreditos = () => {
+            window.location.href = 'creditos.html';
+        };
+
+        if (btnCreditos) {
+            btnCreditos.addEventListener('click', irParaCreditos);
+        }
+
+        // Botão para página de instruções do jogo
+        const btnInstrucoes = document.getElementById('btn-instrucoes');
+
+        const irParaInstrucoes = () => {
+            window.location.href = 'instrucoes.html';
+        };
+
+        if (btnInstrucoes) {
+            btnInstrucoes.addEventListener('click', irParaInstrucoes);
+        }
+    </script>
+    <!-- Registrar Service Worker -->
+    <script>
+        if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("service-worker.js")
+            .then(() => console.log("Service Worker registrado"))
+            .catch(err => console.log(" Erro no SW:", err));
+        }
+    </script>
+</body>
+</html>

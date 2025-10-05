@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="mingau-sit.gif">
+    <link href='https://fonts.googleapis.com/css?family=Pixelify Sans' rel='stylesheet'>
+    <title>Mingau - Instruçõess</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pixelify Sans', "Arial", "Helvetica", "sans-serif";
+        }
+        body {
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            height: 100vh; 
+            overflow: hidden; 
+            
+            justify-content: center;
+            
+            background-image: url(creditos-background.jpg);
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            padding: 0; 
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%; 
+            width: 90%;
+            
+            justify-content: space-evenly; 
+            align-items: center;
+            
+            flex-shrink: 1; 
+            min-height: 0; 
+            padding-top: 50px; 
+        }
+
+        .inst {
+            color: white;
+            font-size: 1rem; 
+            
+            background-image: linear-gradient(to left, rgba(137, 43, 226, 0.5), rgba(0, 0, 139, 0.5));
+            margin-left: 5px;
+            margin-right: 5px;
+            padding: 10px 10px; 
+            width: 100%; 
+            max-width: 500px; 
+            
+            border-radius: 15px;
+            text-align: center;
+            flex-shrink: 1;
+            min-height: 0;
+        }
+
+        h1 {
+            font-size: 1.2rem; 
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 2px black;
+        }
+        button {
+            background-image: linear-gradient(to left, blueviolet, darkblue);
+            color: white;
+            text-shadow: 2px 2px 2px black;
+            font-family: 'Pixelify Sans', "Arial", "Helvetica", "sans-serif";
+            font-weight: bold;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 15px;
+            padding: 10px;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            z-index: 100;
+            width: auto;
+        }
+        button:hover {
+            border: 2px solid white;
+            background: none;
+            color: white;
+        }
+        
+        .flex-group {
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 95%; 
+            max-width: 800px; 
+            padding: 5px;
+            
+            flex-shrink: 1;
+            min-height: 0;
+            flex-direction: row; 
+        }
+
+        .flex-group img {
+            margin: 0 5px; 
+            max-width: 60px; 
+            max-height: 60px;
+            width: auto; 
+            height: auto;
+            object-fit: contain;
+            flex-shrink: 1;
+        }
+        
+        .flex-group .inst h1 {
+            text-align: center;
+        }
+
+        .flex-group:nth-child(2) { 
+            flex-direction: row-reverse;
+        }
+        .flex-group:nth-child(2) .inst h1 {
+            text-align: center;
+        }
+        
+        /* --- MEDIA QUERIES --- */
+
+        /* Tablets */
+        @media (min-width: 769px) and (max-width: 1368px) {
+            body {
+                overflow-y: auto;
+                overflow-x: hidden;
+                min-height: 100vh;
+                height: auto;
+                
+                justify-content: center; 
+                
+                padding-top: 80px; 
+                padding-bottom: 50px;
+            }
+            
+            .main-content {
+                height: auto;
+                padding-top: 0;
+            }
+            
+            .inst {
+                font-size: 1.2rem;
+                max-width: 600px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .flex-group {
+                margin-bottom: 30px;
+            }
+            
+            .flex-group img {
+                max-width: 80px;
+                max-height: 80px;
+                margin: 0 15px;
+            }
+        }
+        
+        /* Desktop */
+        @media (min-width: 1369px) {
+            .inst {
+                font-size: 1.3rem; 
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            .flex-group img {
+                max-width: 100px;
+                max-height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="btn-voltar" class="voltar">&lt;</button>
+    <div class="main-content"> 
+        <div class="flex-group">
+            <div class="mingau-gif">
+                <img src="mingau.gif">
+            </div>
+            <div class="inst">
+                <h1>Correndo e pulando</h1>
+                <p>Mingau está correndo pelo espaço, mas existem perigos no caminho. Para fazer o Mingau pular, aperte a tecla "ESPAÇO" no teclado ou apenas toque na tela em dispositivos touchscreen.</p>
+            </div>
+        </div>
+        <div class="flex-group">
+            <div class="novelo-gif">
+                <img src="novelo.gif">
+            </div>
+            <div class="inst">
+                <h1>Desafio</h1>
+                <p>Ao ver um novelo de lã vindo em sua direção, pule antes que ele te atinja!</p>
+            </div>
+        </div>
+        <div class="flex-group">
+            <div class="petisco-png">
+                <img src="petisco.png">
+            </div>
+            <div class="inst">
+                <h1>Power Up!</h1>
+                <p>A cada 100 pontos que você consquista, um petisco vai aparecer. NÃO PULE! Colida com o pacote e ganhe uma vida extra. Assim, você poderá ser atingido por um novelo sem perder.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Encontra o botão pelo ID
+        const btnVoltar = document.getElementById('btn-voltar');
+
+        // 2. Define a função que redireciona
+        const voltarParaIndex = () => {
+            window.location.href = 'index.html';
+        };
+
+        // 3. Adiciona um "ouvinte" de eventos (event listener)
+        if (btnVoltar) {
+            btnVoltar.addEventListener('click', voltarParaIndex);
+        }
+    </script>
+</body>
+</html>

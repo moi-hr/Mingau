@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="mingau-sit.gif">
+    <link href='https://fonts.googleapis.com/css?family=Pixelify Sans' rel='stylesheet'>
+    <title>Mingau - Créditos</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pixelify Sans', "Arial", "Helvetica", "sans-serif";
+        }
+        body {
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            min-height: 100vh;
+
+            justify-content: center;
+
+            background-image: url(creditos-background.jpg);
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding-top: 0;
+
+            position: relative; 
+        }
+
+        .main-content {
+            position: relative; 
+            
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            
+            width: 100%; 
+        }
+        
+        .mingau-gif {
+            position: relative; 
+            
+            margin-bottom: -50px;
+            margin-top: -50px;
+
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+            width: 100%;
+            transform: translateY(30px);
+        }
+        .mingau-gif img {
+            width: 80px;
+            height: auto;
+        }
+        
+        .creditos {
+            color: white;
+            font-size: 20px;
+            
+            background-image: linear-gradient(to left, rgba(137, 43, 226, 0.5), rgba(0, 0, 139, 0.5));
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 30px;
+            padding: 20px;
+            padding-top: 50px;
+            width: 90%;
+            max-width: 600px; 
+            
+            overflow-y: auto; 
+            max-height: 75vh; 
+            
+            border-radius: 15px;
+            text-align: center;
+        }
+        .secondary-content {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            width: 90%;
+            max-width: 600px;
+        }
+        
+        .caramelo-gif img {
+            width: 100px;
+        }
+
+        .caramelo-gif {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            
+            margin-right: -40px;
+        }
+        
+        .caramelo {
+            color: white;
+            font-size: 20px;
+            padding: 20px;
+            background-image: linear-gradient(to left, rgba(137, 43, 226, 0.5), rgba(0, 0, 139, 0.5));
+            flex-grow: 1; 
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        a {
+            text-decoration: none;
+            color: deepskyblue;
+        }
+        h1 {
+            font-size: 1.8rem;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 2px black;
+        }
+        h2 {
+            font-size: 1.3rem;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 2px black;
+            margin-bottom: 10px;
+        }
+        
+        button {
+            background-image: linear-gradient(to left, blueviolet, darkblue);
+            color: white;
+            text-shadow: 2px 2px 2px black;
+            font-family: 'Pixelify Sans', "Arial", "Helvetica", "sans-serif";
+            font-weight: bold;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 15px;
+            padding: 10px;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            z-index: 100;
+            width: auto;
+        }
+        button:hover {
+            border: 2px solid white;
+            background: none;
+            color: white;
+        }
+        button a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        /* Media Query para a maioria dos celulares */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+            .mingau-gif {
+                margin-bottom: -40px; 
+                margin-top: -30px; 
+            }
+            .creditos {
+                width: 95%;
+                padding-top: 50px; 
+                padding-left: 15px;
+                padding-right: 15px;
+                font-size: 1rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            h2 {
+                font-size: 1.1rem;
+            }
+            .caramelo-gif img {
+                width: 80px;
+            }
+            .caramelo-gif {
+                margin-right: -25px; 
+            }
+            .secondary-content {
+                width: 95%;
+            }
+        }
+        
+        /* Ajuste extra para tablets/telas médias */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .creditos {
+                width: 70%;
+            }
+        }
+        /* Media Query para Desktop/Telas Grandes */
+        @media (min-width: 1025px) {
+            .creditos p {
+                font-size: 15px; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="btn-voltar" class="voltar">&lt;</button>
+    <div class="main-content"> 
+        <div class="mingau-gif">
+            <img src="mingau-sit.gif">
+        </div>
+        <div class="creditos">
+            <h1>Mingau</h1>
+            <h2>O gato espacial</h2>
+            <p>Lista de crédtidos:</p>
+            <p>Desenvolvido por: Moisés Ribeiro</p>
+            <p>Código adaptado de: <a href="https://www.youtube.com/watch?v=r9buAwVBDhA&themeRefresh=1" target="_blank">Manual do Dev</a></p>
+            <p>Algumas funcionalidades adaptadas de: <a href="https://github.com/LeehXD/MINI-GAME-MARIO" target="_blank">LeehXD</a></p>
+            <p>Gif do Mingau por: <a href="https://dribbble.com/shots/2336616-Run-Kitty-Run" target="_blank">Matthew Morrison</a></p>
+            <p>Gif do Mingau sentado por: <a href="https://www.youtube.com/watch?v=LYTl7OAXWk8" target="_blank">IamJagvinderSingh</a></p>
+            <p>Ícone do Mingau por: <a href="https://www.pixilart.com/art/cat-astronaut-512a3f3675c2?ft=topic" target="_blank">XaRaqq</a></p>
+            <p>Gif do novelo por: <a href="https://dribbble.com/shots/10765559-Ball-of-wool-GIF" target="_blank">Emily</a></p>
+            <p>Novelos PNG de: <a href="https://www.freepik.com/free-vector/threads-sewing-flat-illustration-set-cartoon-cotton-wool-yarn-bobbin-knitting-isolated-vector-illustration-collection-fabric-ropes-handcrafting-concept_10613702.htm#fromView=keyword&page=1&position=2&uuid=80bd8f7b-d631-4119-92b2-ece35e95a1c9&query=Yarn" target="_blank">Freepik</a></p>
+            <p>Touca PNG de: <a href="https://www.freepik.com/free-vector/hand-drawn-winter-clothes-essentials_10684370.htm#fromView=image_search_similar&page=1&position=38&uuid=17514a51-400c-4d2e-baf7-c59a61cd6902" target="_blank">Freepik</a></p>
+            <p>Petisco PNG de: <a href="https://kohacu.com/20200616post-29940/" target="_blank">Kohacu</a></p>
+            <p>Space Background de: <a href="https://tenor.com/pt-BR/view/sky-purple-wow-cute-pixels-gif-15450613" target="_blank">Pixel Joint</a></p>
+            <p>Planeta Background por: <a href="https://www.freepik.com/free-vector/pixel-art-mystical-background_29019077.htm#fromView=image_search_similar&page=1&position=0&uuid=ce58d2df-2aa2-4917-979e-a8ce8af8dd24" target="_blank">pikisuperstar</a></p>
+            <p>Créditos Background por: <a href="https://wallpapers.com/wallpapers/aesthetic-pixel-art-hd-zx9lnoxvvasrxsw0.html">rsaucedo418</a></p>
+            <p>Theme audio por: <a href="https://pixabay.com/music/happy-childrens-tunes-level-vii-258783/">Vlad Krotov</a></p>
+            <p>Game over audio por: <a href="https://pixabay.com/sound-effects/game-over-arcade-6435/">Virtual_Vibes</a></p>
+            <p>Vida extra audio por: <a href="https://pixabay.com/sound-effects/level-up-bonus-sequence-2-186891/" target="_blank">floraphonic</a></p>
+            <p>Perde vida audio por: <a href="https://pixabay.com/sound-effects/game-character-140506/" target="_blank">Universfield</a></p>
+        </div>
+        <div class="secondary-content">
+            <div class="caramelo-gif">
+                <img src="caramelo-creditos.gif">
+            </div>
+            <div class="caramelo">
+                <h3>Experimente também: </h3>
+                <a href="https://caramelo-espacial.netlify.app/" target="_blank">Caramelo - O doguinho espacial</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Encontra o botão pelo ID
+        const btnVoltar = document.getElementById('btn-voltar');
+
+        // 2. Define a função que redireciona
+        const voltarParaIndex = () => {
+            window.location.href = 'index.html';
+        };
+
+        // 3. Adiciona um "ouvinte" de eventos (event listener)
+        if (btnVoltar) {
+            btnVoltar.addEventListener('click', voltarParaIndex);
+        }
+    </script>
+</body>
+</html>
