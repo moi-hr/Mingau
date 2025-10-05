@@ -55,11 +55,6 @@
             cursor: pointer;
             z-index: 1;
         }
-        button:hover {
-            border: 2px solid white;
-            background: none;
-            color: white;
-        }
         .start h1 {
             font-size: 4rem;
             color: white;
@@ -516,25 +511,30 @@
             }
         })
 
-        // Botão para página de créditos do jogo
         const btnCreditos = document.getElementById('btn-creditos');
+        const btnInstrucoes = document.getElementById('btn-instrucoes');
 
         const irParaCreditos = () => {
+            if (window.event && window.event.preventDefault) {
+                window.event.preventDefault(); 
+            }
             window.location.href = 'creditos.html';
         };
 
-        if (btnCreditos) {
-            btnCreditos.addEventListener('click', irParaCreditos);
-        }
-
-        // Botão para página de instruções do jogo
-        const btnInstrucoes = document.getElementById('btn-instrucoes');
-
         const irParaInstrucoes = () => {
+            if (window.event && window.event.preventDefault) {
+                window.event.preventDefault(); 
+            }
             window.location.href = 'instrucoes.html';
         };
 
+        if (btnCreditos) {
+            btnCreditos.addEventListener('touchstart', irParaCreditos);
+            btnCreditos.addEventListener('click', irParaCreditos);
+        }
+
         if (btnInstrucoes) {
+            btnInstrucoes.addEventListener('touchstart', irParaInstrucoes);
             btnInstrucoes.addEventListener('click', irParaInstrucoes);
         }
     </script>
@@ -547,4 +547,5 @@
         }
     </script>
 </body>
+
 </html>
